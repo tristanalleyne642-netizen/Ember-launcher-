@@ -1,0 +1,489 @@
+/* Ember Launcher — Steam Deck / Epic style library.
+   Near-black blue-grey background, portrait cover grid, pill filter tabs,
+   fixed bottom hint bar. Ember orange stays the brand accent. */
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #0f1116;
+  --surface: #171a21;
+  --surface-2: #1d212b;
+  --card: #1e222c;
+  --border: #2b313e;
+  --text: #e9ebf1;
+  --muted: #9aa3b5;
+  --accent: #ff8c2e;
+  --accent-strong: #e8641c;
+  --green: #4ade80;
+  --green-bg: #14532d;
+  --danger: #f87171;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding-bottom: 48px; /* room for the fixed hint bar */
+}
+
+/* ---------- header ---------- */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px 6px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  flex: none;
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 26px;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- main tabs (Games / Engines) ---------- */
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 8px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  background: transparent;
+  color: #cfc4b6;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.tab:hover { background: var(--surface-2); }
+.tab.active {
+  background: var(--surface-2);
+  color: var(--accent);
+  border-color: #4a3a28;
+}
+
+main { padding: 8px 24px 24px; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+h2 { font-size: 19px; margin: 14px 0 8px; }
+
+/* ---------- Steam Deck style filter tabs ---------- */
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px 0 4px;
+}
+
+.filter-tab {
+  background: transparent;
+  color: #aab2c0;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  cursor: pointer;
+}
+
+.filter-tab:hover { background: var(--surface-2); color: var(--text); }
+
+.filter-tab.active {
+  background: #e8eaf0;
+  color: #14161b;
+}
+
+.filter-tab .count {
+  font-weight: 700;
+  opacity: 0.65;
+  margin-left: 2px;
+}
+
+/* ---------- toolbar: search / sort / filter ---------- */
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0 16px;
+  align-items: center;
+}
+
+.toolbar input[type="search"] {
+  flex: 1;
+  min-width: 140px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.toolbar input[type="search"]:focus { outline: 2px solid var(--accent-strong); }
+
+.toolbar select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+/* ---------- portrait cover grid ---------- */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.game-card { min-width: 0; }
+
+.cover {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.game-card:hover .cover,
+.game-card:focus-within .cover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.cover img.cover-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* placeholder cover for games with no art: dark ember card,
+   fox mark + bold title — never another game's art */
+.cover-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  background:
+    linear-gradient(160deg, #2b2118 0%, #1c212b 55%, #14161d 100%);
+  text-align: center;
+}
+
+.cover-placeholder .cover-fox {
+  width: 64px;
+  height: 64px;
+  opacity: 0.95;
+}
+
+.cover-placeholder .cover-title {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.cover-placeholder .cover-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+}
+
+/* running badge, Steam Deck style */
+.cover .badge.running {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+}
+
+/* favorite star, top-right of the cover */
+.fav-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10, 12, 16, 0.65);
+  color: #c8cdd8;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-btn:hover { background: rgba(10, 12, 16, 0.9); }
+.fav-btn.faved { color: #fbbf24; }
+
+/* hover action bar over the bottom of the cover */
+.card-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  padding: 26px 8px 8px;
+  background: linear-gradient(transparent, rgba(5, 6, 9, 0.92));
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.game-card:hover .card-actions,
+.game-card:focus-within .card-actions {
+  opacity: 1;
+}
+
+.card-actions .btn { flex: 1; padding: 7px 6px; font-size: 13px; }
+.card-actions .btn.icon { flex: 0 0 auto; }
+
+.card-title {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-sub.missing { color: var(--danger); }
+
+/* collection headings in the COLLECTIONS view */
+.collection-heading {
+  grid-column: 1 / -1;
+  font-size: 15px;
+  margin: 6px 0 0;
+  color: var(--text);
+}
+
+.collection-heading .count {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 13px;
+}
+
+/* ---------- engine cards (unchanged layout, new palette) ---------- */
+
+.game-row, .engine-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.game-info, .engine-info { flex: 1; min-width: 0; }
+
+.game-name, .engine-name {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.game-path {
+  font-size: 12.5px;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.engine-desc {
+  font-size: 13.5px;
+  color: #cfc4b6;
+  margin: 4px 0 0;
+  line-height: 1.45;
+}
+
+.engine-meta { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+
+.badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge.running { background: var(--green-bg); color: var(--green); }
+.badge.coming-soon { background: #3d2b12; color: #fbbf24; }
+.badge.version { background: var(--surface-2); color: #cfc4b6; }
+
+.empty-state {
+  grid-column: 1 / -1;
+  background: var(--surface);
+  border: 1px dashed #4a3a28;
+  border-radius: 10px;
+  padding: 28px 20px;
+  color: #cfc4b6;
+  text-align: center;
+}
+
+.empty-state .empty-fox {
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 0 auto 12px;
+  opacity: 0.9;
+}
+
+.empty-state p { margin: 4px 0; }
+.empty-state .empty-title { font-size: 17px; font-weight: 700; color: var(--text); }
+
+/* ---------- buttons ---------- */
+
+.btn {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid #4a3a28;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover { background: #3a2f22; }
+
+.btn.primary {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn.primary:hover { background: #f26d21; }
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.danger:hover { background: #5b1d18; border-color: #7f2a22; }
+
+/* ---------- add-game form ---------- */
+
+.add-game {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 4px;
+}
+
+.add-game label {
+  display: block;
+  font-size: 13.5px;
+  color: #cfc4b6;
+  margin-bottom: 10px;
+}
+
+.add-game .optional { color: var(--muted); font-size: 12px; }
+
+.add-game input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid #4a3a28;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.add-game input:focus { outline: 2px solid var(--accent-strong); }
+
+.hint { font-size: 12.5px; color: var(--muted); }
+.hint code { color: #d8cdbd; }
+
+.message { min-height: 20px; font-size: 14px; margin: 10px 0 0; }
+.message.error { color: var(--danger); }
+.message.ok { color: var(--green); }
+
+.footer { font-size: 12px; color: #6f6558; margin-top: 18px; }
+
+/* ---------- Steam Deck style bottom hint bar (visual only) ---------- */
+
+.hint-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background: #0a0c10;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  z-index: 10;
+}
+
+.hint-bar .key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #e8eaf0;
+  color: #14161b;
+  font-size: 11px;
+  font-weight: 800;
+  margin-right: 7px;
+  vertical-align: -6px;
+}

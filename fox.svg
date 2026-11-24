@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Ember Launcher fox logo">
+  <!-- Geometric low-poly fox head, MetaMask / GitLab style.
+       Original artwork for Ember Launcher: flat orange facets, no outline,
+       tall pointed ears, wide faceted face tapering to a point. -->
+  <!-- ears -->
+  <polygon points="46,6 24,82 76,66" fill="#e24329"/>
+  <polygon points="154,6 124,66 176,82" fill="#e24329"/>
+  <!-- forehead / brows -->
+  <polygon points="24,82 76,66 100,60" fill="#f26d21"/>
+  <polygon points="176,82 100,60 124,66" fill="#f26d21"/>
+  <!-- forehead dip (fills the notch between the ears) -->
+  <polygon points="76,66 124,66 100,60" fill="#f26d21"/>
+  <!-- center face (long triangle, forehead to chin point) -->
+  <polygon points="76,66 124,66 100,194" fill="#e24329"/>
+  <!-- upper-mid facets -->
+  <polygon points="24,82 76,66 88,128" fill="#ff8c1a"/>
+  <polygon points="176,82 112,128 124,66" fill="#ff8c1a"/>
+  <!-- cheeks -->
+  <polygon points="24,82 12,116 88,128" fill="#fc6d26"/>
+  <polygon points="176,82 188,116 112,128" fill="#fc6d26"/>
+  <!-- lower facets (gold) -->
+  <polygon points="12,116 100,194 88,128" fill="#fca326"/>
+  <polygon points="188,116 100,194 112,128" fill="#fca326"/>
+</svg>

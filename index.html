@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember Launcher</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <img class="logo" src="fox.svg" alt="Ember Launcher fox logo">
+    <div class="title-block">
+      <h1>Ember Launcher</h1>
+      <p class="subtitle">Your games, in one place.</p>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button id="tab-games" class="tab active" data-tab="games">🎮 Games</button>
+    <button id="tab-engines" class="tab" data-tab="engines">🧱 Engines</button>
+  </nav>
+
+  <main>
+    <!-- ============ GAMES TAB ============ -->
+    <section id="panel-games" class="panel active">
+      <!-- Steam Deck style filter tabs with live counts -->
+      <div class="filter-tabs" role="tablist" aria-label="Library filters">
+        <button class="filter-tab active" data-filter="all">ALL GAMES <span class="count" id="count-all">0</span></button>
+        <button class="filter-tab" data-filter="installed">INSTALLED <span class="count" id="count-installed">0</span></button>
+        <button class="filter-tab" data-filter="favorites">FAVORITES <span class="count" id="count-favorites">0</span></button>
+        <button class="filter-tab" data-filter="collections">COLLECTIONS <span class="count" id="count-collections">0</span></button>
+      </div>
+
+      <!-- Search + sort + status filter -->
+      <div class="toolbar">
+        <input id="search-input" type="search" placeholder="Search library" aria-label="Search library" autocomplete="off">
+        <select id="sort-select" aria-label="Sort games">
+          <option value="name">Sort: Name</option>
+          <option value="recent">Sort: Recently added</option>
+        </select>
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="all">Filter: All</option>
+          <option value="running">Filter: Running</option>
+          <option value="not-running">Filter: Not running</option>
+        </select>
+      </div>
+
+      <div id="games-list" class="games-grid"></div>
+
+      <div class="add-game">
+        <h2>Add a game</h2>
+        <label>
+          Name
+          <input id="new-name" type="text" placeholder="e.g. My Game" autocomplete="off">
+        </label>
+        <label>
+          Executable path
+          <input id="new-path" type="text" placeholder="/home/tristan/games/mygame/mygame.x86_64" autocomplete="off">
+        </label>
+        <label>
+          Collection <span class="optional">(optional)</span>
+          <input id="new-collection" type="text" placeholder="e.g. Arcade" autocomplete="off">
+        </label>
+        <button id="add-game-btn" class="btn primary">＋ Add Game</button>
+        <p class="hint">Tip: you can also edit <code>games.json</code> directly — one entry with a <code>name</code> and a <code>path</code> per game, plus an optional <code>cover</code> (path to a portrait image) and <code>collection</code> (a name to group games).</p>
+      </div>
+
+      <p id="games-message" class="message" aria-live="polite"></p>
+      <p id="config-path" class="footer"></p>
+    </section>
+
+    <!-- ============ ENGINES TAB ============ -->
+    <section id="panel-engines" class="panel">
+      <h2>Engines</h2>
+      <p class="subtitle">Like the Epic Games Launcher offers Unreal Engine — download and install game engines from here.</p>
+      <div id="engines-list"></div>
+      <p id="engines-message" class="message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <!-- Steam Deck style bottom hint bar (visual hints only) -->
+  <footer class="hint-bar" aria-hidden="true">
+    <span><span class="key">≡</span> MENU</span>
+    <span><span class="key">Y</span> SORT BY</span>
+    <span><span class="key">☰</span> OPTIONS</span>
+    <span><span class="key">A</span> SELECT</span>
+    <span><span class="key">B</span> BACK</span>
+  </footer>
+
+<script src="renderer.js"></script>
+</body>
+</html>

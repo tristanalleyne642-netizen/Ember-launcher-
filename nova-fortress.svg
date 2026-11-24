@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 690" role="img" aria-label="Nova Fortress cover art">
+  <!-- Original cover art for Nova Fortress (the NovaSource demo game).
+       Ember Launcher artwork: dark navy sky, ember beams, fortress
+       battlements, and the launcher's own geometric fox mark. No Valve art. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0e1424"/>
+      <stop offset="1" stop-color="#1c2440"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#ff8c1a" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ff8c1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="460" height="690" fill="url(#sky)"/>
+  <rect width="460" height="690" fill="url(#glow)"/>
+
+  <!-- diagonal ember beams -->
+  <polygon points="0,0 150,0 40,690 0,690" fill="#ff8c1a" opacity="0.06"/>
+  <polygon points="460,0 320,0 430,690 460,690" fill="#ff8c1a" opacity="0.06"/>
+  <polygon points="0,180 460,60 460,110 0,230" fill="#ff8c1a" opacity="0.05"/>
+
+  <!-- stars -->
+  <g fill="#ffffff">
+    <circle cx="52" cy="180" r="2.2" opacity="0.7"/>
+    <circle cx="398" cy="150" r="2.2" opacity="0.7"/>
+    <circle cx="352" cy="238" r="1.6" opacity="0.5"/>
+    <circle cx="96" cy="300" r="1.6" opacity="0.5"/>
+    <circle cx="420" cy="330" r="2" opacity="0.55"/>
+    <circle cx="36" cy="430" r="1.8" opacity="0.45"/>
+    <circle cx="250" cy="120" r="1.6" opacity="0.5"/>
+  </g>
+
+  <!-- the Ember fox mark (same original geometry as renderer/fox.svg) -->
+  <g transform="translate(180,36) scale(0.5)">
+    <polygon points="46,6 24,82 76,66" fill="#e24329"/>
+    <polygon points="154,6 124,66 176,82" fill="#e24329"/>
+    <polygon points="24,82 76,66 100,60" fill="#f26d21"/>
+    <polygon points="176,82 100,60 124,66" fill="#f26d21"/>
+    <polygon points="76,66 124,66 100,60" fill="#f26d21"/>
+    <polygon points="76,66 124,66 100,194" fill="#e24329"/>
+    <polygon points="24,82 76,66 88,128" fill="#ff8c1a"/>
+    <polygon points="176,82 112,128 124,66" fill="#ff8c1a"/>
+    <polygon points="24,82 12,116 88,128" fill="#fc6d26"/>
+    <polygon points="176,82 188,116 112,128" fill="#fc6d26"/>
+    <polygon points="12,116 100,194 88,128" fill="#fca326"/>
+    <polygon points="188,116 100,194 112,128" fill="#fca326"/>
+  </g>
+
+  <!-- title -->
+  <text x="230" y="300" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="900" letter-spacing="10" fill="#ffffff">NOVA</text>
+  <text x="230" y="372" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="12" fill="#ff8c2e">FORTRESS</text>
+  <rect x="155" y="396" width="150" height="4" fill="#ff8c2e"/>
+  <text x="230" y="440" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="5" fill="#9aa3b5">A NOVASOURCE GAME</text>
+
+  <!-- fortress battlements -->
+  <path d="M0 690 L0 624 L28 624 L28 604 L52 604 L52 624 L82 624 L82 604 L106 604 L106 624 L136 624 L136 608 L160 608 L160 624 L190 624 L190 604 L214 604 L214 624 L246 624 L246 604 L270 604 L270 624 L300 624 L300 608 L324 608 L324 624 L354 624 L354 604 L378 604 L378 624 L408 624 L408 604 L432 604 L432 624 L460 624 L460 690 Z" fill="#0a0d18" opacity="0.9"/>
+  <path d="M205 690 L205 560 L217 560 L217 544 L229 544 L229 560 L241 560 L241 544 L253 544 L253 560 L265 560 L265 690 Z" fill="#0a0d18" opacity="0.9"/>
+  <text x="230" y="672" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="4" fill="#7c86a0">EMBER LAUNCHER</text>
+</svg>

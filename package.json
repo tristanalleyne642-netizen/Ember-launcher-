@@ -1,0 +1,38 @@
+{
+  "author": "Tristan Alleyne",
+  "build": {
+    "appId": "com.tristan.emberlauncher",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "lib/**/*",
+      "games.json",
+      "package.json",
+      "engines-release/**/*"
+    ],
+    "icon": "build/icon.png",
+    "linux": {
+      "category": "Game",
+      "target": [
+        "AppImage"
+      ]
+    },
+    "productName": "Ember Launcher"
+  },
+  "description": "Ember Launcher \u2014 a game launcher for Linux. The library starts empty; add your own games.",
+  "devDependencies": {
+    "electron": "^35.7.5",
+    "electron-builder": "^26.0.0"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "name": "ember-launcher",
+  "scripts": {
+    "dist": "electron-builder --linux AppImage",
+    "pack": "electron-builder --linux AppImage",
+    "start": "electron --no-sandbox .",
+    "test": "node test/launcher.test.js"
+  },
+  "version": "0.1.0"
+}
